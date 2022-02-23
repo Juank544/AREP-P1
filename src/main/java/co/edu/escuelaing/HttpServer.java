@@ -59,13 +59,14 @@ public class HttpServer {
                         + "<title>Clima</title>\n"
                         + "</head>"
                         + "<body>"
-                        + "Bienvenido al servicio de clima"
+                        + "<h1>Bienvenido al servicio de clima</h1>"
+                        + "<h3>Ingrese la ciudad que le gustaría consultar</h3>"
+                        + "<a href='/consulta?lugar='>Consultar</a>"
                         + "</body>"
                         + "</html>";
             } else if (file.startsWith("/consulta?lugar=")){
                 lugar = file.substring((16));
-                System.out.println("_______________________________________________");
-                System.out.println(lugar);
+                System.out.println(lugar+"-------------------------------------------------");
                 outputLine = "HTTP/1.1 200 OK\r\n"
                         +"Content-Type: text/html\r\n"
                         +"\r\n"
@@ -76,8 +77,8 @@ public class HttpServer {
                         + "<title>Clima del lugar dado</title>\n"
                         + "</head>"
                         + "<body>"
-                        + ""
-                        + "Lugar"
+                        + "<h1>El clima en el lugar dado es:</h1>"
+                        + "<a href='/clima'>Página principal</a>"
                         + "</body>"
                         + "</html>";
             } else {
