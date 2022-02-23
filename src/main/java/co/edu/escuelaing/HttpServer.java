@@ -47,8 +47,8 @@ public class HttpServer {
                 }
             }
 
-            if (file.startsWith("/Apps/")){
-                outputLine = invokeService(file.substring(5));
+            if (file.startsWith("/Clima")){
+                outputLine = null;
             } else {
                 outputLine = "HTTP/1.1 200 OK\r\n"
                         +"Content-Type: text/html\r\n"
