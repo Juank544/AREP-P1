@@ -95,7 +95,21 @@ public class HttpServer {
                         + "</body>"
                         + "</html>";
             } else {
-                outputLine = null;
+                outputLine = "HTTP/1.1 400 OK\r\n"
+                        +"Content-Type: text/html\r\n"
+                        +"\r\n"
+                        +"<!DOCTYPE html>"
+                        + "<html>"
+                        + "<head>"
+                        + "<meta charset=\"UTF-8\">"
+                        + "<title>Error</title>\n"
+                        + "</head>"
+                        + "<body>"
+                        + "<h1>No encontre la página solicitada</h1>"
+                        + "<br>"
+                        + "<a href='/clima'>Página principal</a>"
+                        + "</body>"
+                        + "</html>";
             }
             out.println(outputLine);
 
