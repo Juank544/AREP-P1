@@ -47,7 +47,7 @@ public class HttpServer {
                 }
             }
 
-            String lugar = null;
+            String lugar = "London";
             if (file.startsWith("/clima")){
                 outputLine = "HTTP/1.1 200 OK\r\n"
                         +"Content-Type: text/html\r\n"
@@ -56,13 +56,16 @@ public class HttpServer {
                         + "<html>"
                         + "<head>"
                         + "<meta charset=\"UTF-8\">"
-                        + "<title>Title of the document</title>\n"
+                        + "<title>Clima</title>\n"
                         + "</head>"
                         + "<body>"
-                        + "Clima"
+                        + "Bienvenido al servicio de clima"
                         + "</body>"
                         + "</html>";
-            } else if (file.startsWith("/consulta?lugar="+lugar)){
+            } else if (file.startsWith("/consulta?lugar=")){
+                lugar = file.substring((16));
+                System.out.println("_______________________________________________");
+                System.out.println(lugar);
                 outputLine = "HTTP/1.1 200 OK\r\n"
                         +"Content-Type: text/html\r\n"
                         +"\r\n"
@@ -70,9 +73,10 @@ public class HttpServer {
                         + "<html>"
                         + "<head>"
                         + "<meta charset=\"UTF-8\">"
-                        + "<title>Title of the document</title>\n"
+                        + "<title>Clima del lugar dado</title>\n"
                         + "</head>"
                         + "<body>"
+                        + ""
                         + "Lugar"
                         + "</body>"
                         + "</html>";
