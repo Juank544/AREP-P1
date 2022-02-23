@@ -21,7 +21,7 @@ public class Clima {
             while (line!= null){
                 stringBuffer.append(line);
                 line = bufferedReader.readLine();
-                System.out.println(line+"-----------------------------------------------------");
+                //System.out.println(line+"-----------------------------------------------------");
             }
             bufferedReader.close();
         } catch (IOException e) {
