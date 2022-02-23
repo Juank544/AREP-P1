@@ -95,7 +95,7 @@ public class HttpServer {
                         + "</body>"
                         + "</html>";
             } else {
-                outputLine = "HTTP/1.1 400 OK\r\n"
+                outputLine = "HTTP/1.1 200 OK\r\n"
                         +"Content-Type: text/html\r\n"
                         +"\r\n"
                         +"<!DOCTYPE html>"
