@@ -47,9 +47,8 @@ public class HttpServer {
                 }
             }
 
-            if (file.startsWith("/Clima")){
-                outputLine = null;
-            } else {
+            String lugar = null;
+            if (file.startsWith("/clima")){
                 outputLine = "HTTP/1.1 200 OK\r\n"
                         +"Content-Type: text/html\r\n"
                         +"\r\n"
@@ -60,9 +59,25 @@ public class HttpServer {
                         + "<title>Title of the document</title>\n"
                         + "</head>"
                         + "<body>"
-                        + "My Web Site"
+                        + "Clima"
                         + "</body>"
                         + "</html>";
+            } else if (file.startsWith("/consulta?lugar="+lugar)){
+                outputLine = "HTTP/1.1 200 OK\r\n"
+                        +"Content-Type: text/html\r\n"
+                        +"\r\n"
+                        +"<!DOCTYPE html>"
+                        + "<html>"
+                        + "<head>"
+                        + "<meta charset=\"UTF-8\">"
+                        + "<title>Title of the document</title>\n"
+                        + "</head>"
+                        + "<body>"
+                        + "Lugar"
+                        + "</body>"
+                        + "</html>";
+            } else {
+                outputLine = null;
             }
             out.println(outputLine);
 
