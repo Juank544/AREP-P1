@@ -1,1 +1,1 @@
-web: java -cp target/classes:target/dependency/* edu.escuelaing.App
+web: java -cp target/classes:target/dependency/* co.edu.escuelaing.App
