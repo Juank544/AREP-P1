@@ -1,5 +1,8 @@
 package co.edu.escuelaing;
 
+import co.edu.escuelaing.service.Clima;
+import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,6 +12,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class HttpServer {
+    private static Clima clima;
+    private static String lugar = "London";
+
     public void start() throws IOException, InvocationTargetException, IllegalAccessException {
         ServerSocket serverSocket = null;
         try {
@@ -47,7 +53,6 @@ public class HttpServer {
                 }
             }
 
-            String lugar = "London";
             if (file.startsWith("/clima")){
                 outputLine = "HTTP/1.1 200 OK\r\n"
                         +"Content-Type: text/html\r\n"
@@ -61,12 +66,18 @@ public class HttpServer {
                         + "<body>"
                         + "<h1>Bienvenido al servicio de clima</h1>"
                         + "<h3>Ingrese la ciudad que le gustaría consultar</h3>"
-                        + "<a href='/consulta?lugar='>Consultar</a>"
+                        + "<form action=\"/consulta\">\n" +
+                        "  <label for=\"lugar\">First name:</label><br>\n" +
+                        "  <input type=\"text\" id=\"lugar\" name=\"lugar\" value=\"London\"><br>\n" +
+                        "  <input type=\"submit\" value=\"Consultar\">\n" +
+                        "</form>"
+                        + "<br>"
                         + "</body>"
                         + "</html>";
             } else if (file.startsWith("/consulta?lugar=")){
                 lugar = file.substring((16));
-                System.out.println(lugar+"-------------------------------------------------");
+                String conexion = Clima.getClima(lugar);
+                //System.out.println(lugar+"-------------------------------------------------");
                 outputLine = "HTTP/1.1 200 OK\r\n"
                         +"Content-Type: text/html\r\n"
                         +"\r\n"
@@ -78,6 +89,8 @@ public class HttpServer {
                         + "</head>"
                         + "<body>"
                         + "<h1>El clima en el lugar dado es:</h1>"
+                        + conexion
+                        + "<br>"
                         + "<a href='/clima'>Página principal</a>"
                         + "</body>"
                         + "</html>";
